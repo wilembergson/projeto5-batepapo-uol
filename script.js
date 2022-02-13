@@ -1,4 +1,32 @@
+let yourName = ''
+let errorStatus = ''
+
 let main = document.querySelector("main")
+
+function getYourName(){
+    while(yourName === ''){
+        yourName = prompt("Como quer ser chamado")
+    }
+    const sendName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
+    //sendName.catch(errorName)
+}
+/*function errorName(error){
+    errorStatus = error.response.status
+    console.log(errorStatus)
+    
+    while(errorStatus === error.response.status){
+        yourName = prompt("Este nome já existe. Digite outro.")
+        const newName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
+        errorStatus = newName.response.status
+        console.log(errorStatus)
+    }
+}*/
+
+function keepConected(){
+    console.log('NOME: '+yourName)
+    axios.post('https://mock-api.driven.com.br/api/v4/uol/status', {name: yourName})
+    console.log('Atualizando...'+yourName)
+}
 
 function getMessages(){
     const promesse = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
@@ -10,7 +38,6 @@ function call(answer){
 }
 function listMessages(list){
     main.innerHTML = ""
-
     list.forEach(loadMessage);
 }
 function loadMessage(message){
@@ -40,7 +67,11 @@ function loadMessage(message){
                     </text>
                 </div>`
     }
+    
     return main.innerHTML += element
 }
 
+getYourName()
+setInterval(keepConected, 3000)
+setInterval(getMessages, 3000)
 getMessages()

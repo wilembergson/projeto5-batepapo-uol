@@ -40,8 +40,10 @@ main{
     display: flex;
     flex-direction: column;
     margin-top: 106px;
+    padding-bottom: 85px;
     position: absolute;
     z-index: 4;
+    overflow-y: scroll;
 }
 main::-webkit-scrollbar {
     display: none;
@@ -69,6 +71,16 @@ main div{
 }
 .time{
     color: #9c9797;
+}
+
+aside{
+    display: none;
+    width: 259px;
+    height: 967px;
+    position: fixed;
+    
+    z-index: 6;
+    background: #d46666;
 }
 
 footer{
