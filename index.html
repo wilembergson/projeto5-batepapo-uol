@@ -16,19 +16,43 @@
         <div class="page">
             <header>
                 <img src="logo.jpg">
-                <ion-icon name="people"></ion-icon>
+                <ion-icon name="people" onclick="showSidebar()"></ion-icon>
             </header>
 
             <main>
             </main>
 
             <aside>
-                <div class="aside-title">Escolha um contato para enviar mensagem</div>
+                <div class="aside-transparent" onclick="hideSidebar()"></div>
+                <div class="aside-options">
+                    <section class="section-title">Escolha um contato para enviar menssagem:</section>
+                    <section>
+                        <ion-icon name="people"></ion-icon>
+                        <text>Todos</text>
+                    </section>
+                    <section>
+                        <ion-icon name="person-circle"></ion-icon>
+                        <text>João</text>
+                    </section>
+                    <section>
+                        <ion-icon name="person-circle"></ion-icon>
+                        <text>Maria</text>
+                    </section>
+                    <section class="section-title">Escolha de visibilidade:</section>
+                    <section>
+                        <ion-icon name="lock-open"></ion-icon>
+                        <text>Público</text>
+                    </section>
+                    <section>
+                        <ion-icon name="lock-closed"></ion-icon>
+                        <text>Reservadamente</text>
+                    </section>
+                </div>
             </aside>
             
             <footer>
                 <input type="text" placeholder="Escreva aqui...">
-                <ion-icon name="paper-plane-outline"></ion-icon>
+                <ion-icon name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
             </footer>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

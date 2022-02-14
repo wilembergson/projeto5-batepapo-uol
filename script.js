@@ -1,5 +1,6 @@
 let yourName = ''
 let errorStatus = ''
+let sendName = ''
 
 let main = document.querySelector("main")
 
@@ -7,23 +8,22 @@ function getYourName(){
     while(yourName === ''){
         yourName = prompt("Como quer ser chamado")
     }
-    const sendName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
-    //sendName.catch(errorName)
+    sendName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
+    sendName.catch(errorName)
 }
-/*function errorName(error){
+function errorName(error){
     errorStatus = error.response.status
     console.log(errorStatus)
     
-    while(errorStatus === error.response.status){
+    while(errorStatus === 400){
         yourName = prompt("Este nome já existe. Digite outro.")
-        const newName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
-        errorStatus = newName.response.status
+        sendName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
+        errorStatus = sendName.response.status
         console.log(errorStatus)
     }
-}*/
+}
 
 function keepConected(){
-    console.log('NOME: '+yourName)
     axios.post('https://mock-api.driven.com.br/api/v4/uol/status', {name: yourName})
     console.log('Atualizando...'+yourName)
 }
@@ -69,6 +69,26 @@ function loadMessage(message){
     }
     
     return main.innerHTML += element
+}
+
+function showSidebar(){
+    const sidebar = document.querySelector("aside")
+    sidebar.classList.add('sidebar-on')
+}
+function hideSidebar(){
+    const sidebar = document.querySelector("aside")
+    sidebar.classList.remove('sidebar-on')
+}
+
+function sendMessage(){
+    let label = document.querySelector("footer input")
+    const route = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', {
+        from: yourName,
+        to: 'Todos',
+        text: label.value,
+        type: 'message'
+    })
+    label.value = ''
 }
 
 getYourName()

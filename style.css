@@ -34,6 +34,7 @@ header ion-icon{
     font-size: 50px;
     margin-top: 16px;
     margin-right: 22.41px;
+    cursor: pointer;
 }
 
 main{
@@ -72,15 +73,61 @@ main div{
 .time{
     color: #9c9797;
 }
-
 aside{
     display: none;
+}
+.sidebar-on{
+    display: flex;
+}
+.aside-transparent{
+    display: flex;
+    width: 116px;
+    height: 967px;
+    position: fixed;
+    z-index: 6;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+.aside-options{
+    display: flex;
+    flex-direction: column;
     width: 259px;
     height: 967px;
     position: fixed;
-    
     z-index: 6;
-    background: #d46666;
+    background: #f7f5f5;
+    margin-left: 116px;
+}
+.aside-options .section-title{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    color: #000000;
+}
+.aside-options section{
+    display: flex;
+    cursor: pointer;
+}
+.aside-options section text{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin: 2px;
+}
+.aside-options section ion-icon{
+    font-size: 26px;
+    margin: 8px;
 }
 
 footer{
@@ -110,4 +157,5 @@ footer ion-icon{
     font-size: 30px;
     margin-top: 22px;
     margin-right: 17px;
+    cursor: pointer;
 }
