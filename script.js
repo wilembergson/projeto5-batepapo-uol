@@ -4,12 +4,22 @@ let sendName = ''
 
 let main = document.querySelector("main")
 
-function getYourName(){
-    while(yourName === ''){
-        yourName = prompt("Como quer ser chamado")
+function chekingName(){
+    yourName = document.querySelector(".start-screen input").value
+    if(yourName === ''){
+        alert('Digite o nome que você quer.')
+    }else{
+        getYourName()
     }
+}
+function getYourName(){
     sendName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
     sendName.catch(errorName)
+
+    setInterval(keepConected, 3000)
+    setInterval(getMessages, 3000)
+    let startPage = document.querySelector('.start-screen')
+    startPage.classList.add('start-screen-off')
 }
 function errorName(error){
     errorStatus = error.response.status
@@ -21,11 +31,11 @@ function errorName(error){
         errorStatus = sendName.response.status
         console.log(errorStatus)
     }
+
 }
 
 function keepConected(){
     axios.post('https://mock-api.driven.com.br/api/v4/uol/status', {name: yourName})
-    console.log('Atualizando...'+yourName)
 }
 
 function getMessages(){
@@ -88,10 +98,9 @@ function sendMessage(){
         text: label.value,
         type: 'message'
     })
+    getMessages()
     label.value = ''
 }
-
-getYourName()
-setInterval(keepConected, 3000)
-setInterval(getMessages, 3000)
-getMessages()
+//setInterval(keepConected, 3000)
+//setInterval(getMessages, 3000)
+//getMessages()

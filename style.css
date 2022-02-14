@@ -14,6 +14,50 @@ body{
     position: relative;
 }
 
+.start-screen{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #fffafa;
+    width: 375px;
+    height: 967px;
+    position: fixed;
+    z-index: 6;
+
+}
+.start-screen-off{
+    display: none;
+}
+.start-screen img{
+    width: 185px;
+    height: 105px;
+    margin-top: 72px;
+    margin-bottom: 94px;
+}
+
+.start-screen input{
+    width: 261px;
+    height: 54px;
+    background: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    box-sizing: border-box;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.start-screen button{
+    font-family: Roboto;
+    width: 109px;
+    height: 45px;
+    color: #696969;
+    background: #E7E7E7;
+    border-radius: 9px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 header{
     display: flex;
     justify-content: space-between;
