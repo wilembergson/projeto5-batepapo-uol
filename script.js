@@ -1,6 +1,7 @@
 let yourName = ''
 let errorStatus = ''
 let sendName = ''
+let loginRead = false
 
 let main = document.querySelector("main")
 
@@ -9,29 +10,21 @@ function chekingName(){
     if(yourName === ''){
         alert('Digite o nome que você quer.')
     }else{
+        sendName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
+        sendName.catch(errorName)
         getYourName()
     }
 }
 function getYourName(){
-    sendName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
-    sendName.catch(errorName)
-
     setInterval(keepConected, 3000)
     setInterval(getMessages, 3000)
     let startPage = document.querySelector('.start-screen')
     startPage.classList.add('start-screen-off')
 }
 function errorName(error){
-    errorStatus = error.response.status
-    console.log(errorStatus)
-    
-    while(errorStatus === 400){
-        yourName = prompt("Este nome já existe. Digite outro.")
-        sendName = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', {name: yourName})
-        errorStatus = sendName.response.status
-        console.log(errorStatus)
-    }
-
+    loginRead = false
+    alert("Este nome já existe.")
+    document.querySelector(".start-screen input").value = ''
 }
 
 function keepConected(){
@@ -54,7 +47,7 @@ function loadMessage(message){
     let element = ``
     
     if(message.type === 'status'){
-        element = `<div class="in-out-message">
+        element = `<div class="in-out-message" data-identifier="message">
                         <text>
                             <span style="color: #9c9797;">${message.time}</span> 
                             <span style="font-weight:bold">${message.from}</span> entra na sala...
@@ -62,7 +55,7 @@ function loadMessage(message){
                     </div>`
     }
     else if(message.type === 'message'){
-        element =  `<div class="normal-message">
+        element =  `<div class="normal-message" data-identifier="message">
                         <text>
                             <span style="color: #9c9797;">${message.time}(09:22:38)</span> 
                             <span style="font-weight:bold">${message.from}</span> para <span style="font-weight:bold">${message.to}:</span> ${message.text}
@@ -70,7 +63,7 @@ function loadMessage(message){
                     </div>`
     }
     else if(message.type === 'private_message'){
-       element = `<div class="private-message">
+       element = `<div class="private-message data-identifier="message"">
                     <text>
                         <span style="color: #9c9797;">${message.time}</span> 
                         <span style="font-weight:bold">${message.from}</span> reservadamente para <span style="font-weight:bold">${message.to}: </span>${message.text}
@@ -101,6 +94,3 @@ function sendMessage(){
     getMessages()
     label.value = ''
 }
-//setInterval(keepConected, 3000)
-//setInterval(getMessages, 3000)
-//getMessages()

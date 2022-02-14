@@ -16,8 +16,8 @@
         <div class="page">
             <div class="start-screen">
                 <img src="logo.jpg">
-                <input type="text" placeholder="Escreva seu nome">
-                <button onclick="chekingName()">Entrar</button>
+                <input type="text" placeholder="Escreva seu nome" data-identifier="enter-name">
+                <button onclick="chekingName()" data-identifier="start">Entrar</button>
             </div>
             <header>
                 <img src="logo.jpg">
@@ -57,7 +57,7 @@
             
             <footer>
                 <input type="text" placeholder="Escreva aqui...">
-                <ion-icon name="paper-plane-outline" onclick="sendMessage()"></ion-icon>
+                <ion-icon name="paper-plane-outline" onclick="sendMessage()" data-identifier="send-message"></ion-icon>
             </footer>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
